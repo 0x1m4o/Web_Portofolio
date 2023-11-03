@@ -1,0 +1,65 @@
+name: web_portofolio
+description: Website Portofolio.
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  # https://pub.dev/packages/internet_connection_checker
+  internet_connection_checker: ^1.0.0+1
+  # https://pub.dev/packages/dartz
+  dartz: ^0.10.1
+  # https://pub.dev/packages/equatable
+  equatable: ^2.0.5
+  # https://pub.dev/packages/fluro
+  fluro: ^2.0.5
+  # https://pub.dev/packages/responsive_framework
+  responsive_framework: ^1.0.0
+  # https://pub.dev/packages/google_fonts
+  google_fonts: ^4.0.4
+  # https://pub.dev/packages/easy_localization
+  easy_localization: ^3.0.3
+  # https://pub.dev/packages/flutter_sticky_widgets
+  flutter_sticky_widgets: ^0.0.3
+  # https://pub.dev/packages/flutter_svg
+  flutter_svg: ^1.1.6
+  # https://pub.dev/packages/animated_toggle_switch
+  animated_toggle_switch: ^0.8.0
+  # https://pub.dev/packages/scroll_to_index
+  scroll_to_index: ^3.0.1
+  # https://pub.dev/packages/flutter_bloc
+  flutter_bloc: ^8.1.3
+  # https://pub.dev/packages/freezed
+  freezed: ^2.3.5
+  # https://pub.dev/packages/get_it
+  get_it: ^7.6.0
+  # https://pub.dev/packages/flutter_slider_drawer
+  flutter_slider_drawer: ^2.1.3
+  # https://pub.dev/packages/flutter_glow
+  flutter_glow: ^0.3.0
+  # https://pub.dev/packages/animated_text_kit
+  animated_text_kit: ^4.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  # https://pub.dev/packages/freezed_annotation
+  freezed_annotation: ^2.4.1
+  # https://pub.dev/packages/build_runner
+  build_runner: ^2.3.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/svg/
+    - assets/gif/
+    - assets/images/
+    - assets/translations/
