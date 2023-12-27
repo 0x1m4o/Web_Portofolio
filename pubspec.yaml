@@ -45,6 +45,19 @@ dependencies:
   flutter_glow: ^0.3.0
   # https://pub.dev/packages/animated_text_kit
   animated_text_kit: ^4.2.2
+  # https://pub.dev/packages/auto_animated
+  auto_animated: ^3.2.0
+  # https://pub.dev/packages/auto_size_text
+  auto_size_text: ^3.0.0
+  # https://pub.dev/packages/flutter_animated_icons
+  flutter_animated_icons: ^1.0.1
+  # https://pub.dev/packages/lottie
+  lottie: ^1.4.2
+  # https://pub.dev/packages/inview_notifier_list
+  inview_notifier_list: ^3.0.0
+  hovering: ^1.0.4
+  flutter_hooks: ^0.20.3
+
 
 dev_dependencies:
   flutter_test:
@@ -54,12 +67,14 @@ dev_dependencies:
   freezed_annotation: ^2.4.1
   # https://pub.dev/packages/build_runner
   build_runner: ^2.3.3
-
+  # https://pub.dev/packages/json_serializable/versions
+  json_serializable: ^6.5.4
+  
 flutter:
   uses-material-design: true
   assets:
     - assets/
     - assets/svg/
-    - assets/gif/
+    - assets/lottie/
     - assets/images/
     - assets/translations/

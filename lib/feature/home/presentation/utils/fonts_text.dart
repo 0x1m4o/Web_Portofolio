@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:web_portofolio/feature/home/presentation/resources/commons/font_names.dart';
 
 TextStyle textFonts({
   String? fontFamily,
@@ -16,7 +17,7 @@ TextStyle textFonts({
   List<Shadow>? shadows,
   TextBaseline? textBaseline,
 }) {
-  return GoogleFonts.getFont(fontFamily ?? "Poppins").copyWith(
+  return GoogleFonts.getFont(fontFamily ?? FontNames.openSans).copyWith(
     background: background,
     decoration: decoration,
     shadows: shadows,

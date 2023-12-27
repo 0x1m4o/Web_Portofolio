@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:web_portofolio/application/home/bloc/home_bloc.dart';
-import 'package:web_portofolio/config/theme/app_themes.dart';
-import 'package:web_portofolio/presentation/routes/app_routes.dart';
-import 'package:web_portofolio/presentation/routes/application.dart';
-import 'package:web_portofolio/presentation/routes/router_config.dart';
+import 'package:web_portofolio/feature/home/presentation/resources/theme/app_themes.dart';
+import 'package:web_portofolio/feature/home/presentation/bloc/home/home_bloc.dart';
+import 'package:web_portofolio/feature/home/presentation/routes/app_routes.dart';
+import 'package:web_portofolio/feature/home/presentation/routes/application.dart';
+import 'package:web_portofolio/feature/home/presentation/routes/router_config.dart';
 import 'injector.dart';
 
 void main() async {
@@ -32,8 +32,8 @@ class App extends StatelessWidget {
                 dragWithMouse: true),
             breakpoints: [
               const Breakpoint(start: 0, end: 576, name: MOBILE),
-              const Breakpoint(start: 577, end: 991, name: TABLET),
-              const Breakpoint(start: 992, end: 1920, name: DESKTOP),
+              const Breakpoint(start: 577, end: 992, name: TABLET),
+              const Breakpoint(start: 993, end: 1920, name: DESKTOP),
               const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
             ]),
       ),
