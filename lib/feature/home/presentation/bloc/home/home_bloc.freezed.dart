@@ -16,43 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
+  List<MediumEntity> get allMediumData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initTheme,
-    required TResult Function(int? index) changeSection,
+    required TResult Function(List<MediumEntity> allMediumData) getMediumData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initTheme,
-    TResult? Function(int? index)? changeSection,
+    TResult? Function(List<MediumEntity> allMediumData)? getMediumData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initTheme,
-    TResult Function(int? index)? changeSection,
+    TResult Function(List<MediumEntity> allMediumData)? getMediumData,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitThemeEvent value) initTheme,
-    required TResult Function(SectionIndexEvent value) changeSection,
+    required TResult Function(GetMediumData value) getMediumData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitThemeEvent value)? initTheme,
-    TResult? Function(SectionIndexEvent value)? changeSection,
+    TResult? Function(GetMediumData value)? getMediumData,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitThemeEvent value)? initTheme,
-    TResult Function(SectionIndexEvent value)? changeSection,
+    TResult Function(GetMediumData value)? getMediumData,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -60,6 +59,8 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
+  @useResult
+  $Res call({List<MediumEntity> allMediumData});
 }
 
 /// @nodoc
@@ -71,217 +72,124 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? allMediumData = null,
+  }) {
+    return _then(_value.copyWith(
+      allMediumData: null == allMediumData
+          ? _value.allMediumData
+          : allMediumData // ignore: cast_nullable_to_non_nullable
+              as List<MediumEntity>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitThemeEventImplCopyWith<$Res> {
-  factory _$$InitThemeEventImplCopyWith(_$InitThemeEventImpl value,
-          $Res Function(_$InitThemeEventImpl) then) =
-      __$$InitThemeEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitThemeEventImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$InitThemeEventImpl>
-    implements _$$InitThemeEventImplCopyWith<$Res> {
-  __$$InitThemeEventImplCopyWithImpl(
-      _$InitThemeEventImpl _value, $Res Function(_$InitThemeEventImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitThemeEventImpl
-    with DiagnosticableTreeMixin
-    implements InitThemeEvent {
-  const _$InitThemeEventImpl();
-
+abstract class _$$GetMediumDataCopyWith<$Res>
+    implements $HomeEventCopyWith<$Res> {
+  factory _$$GetMediumDataCopyWith(
+          _$GetMediumData value, $Res Function(_$GetMediumData) then) =
+      __$$GetMediumDataCopyWithImpl<$Res>;
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeEvent.initTheme()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'HomeEvent.initTheme'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitThemeEventImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initTheme,
-    required TResult Function(int? index) changeSection,
-  }) {
-    return initTheme();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initTheme,
-    TResult? Function(int? index)? changeSection,
-  }) {
-    return initTheme?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initTheme,
-    TResult Function(int? index)? changeSection,
-    required TResult orElse(),
-  }) {
-    if (initTheme != null) {
-      return initTheme();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitThemeEvent value) initTheme,
-    required TResult Function(SectionIndexEvent value) changeSection,
-  }) {
-    return initTheme(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitThemeEvent value)? initTheme,
-    TResult? Function(SectionIndexEvent value)? changeSection,
-  }) {
-    return initTheme?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitThemeEvent value)? initTheme,
-    TResult Function(SectionIndexEvent value)? changeSection,
-    required TResult orElse(),
-  }) {
-    if (initTheme != null) {
-      return initTheme(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class InitThemeEvent implements HomeEvent {
-  const factory InitThemeEvent() = _$InitThemeEventImpl;
-}
-
-/// @nodoc
-abstract class _$$SectionIndexEventImplCopyWith<$Res> {
-  factory _$$SectionIndexEventImplCopyWith(_$SectionIndexEventImpl value,
-          $Res Function(_$SectionIndexEventImpl) then) =
-      __$$SectionIndexEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int? index});
+  $Res call({List<MediumEntity> allMediumData});
 }
 
 /// @nodoc
-class __$$SectionIndexEventImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$SectionIndexEventImpl>
-    implements _$$SectionIndexEventImplCopyWith<$Res> {
-  __$$SectionIndexEventImplCopyWithImpl(_$SectionIndexEventImpl _value,
-      $Res Function(_$SectionIndexEventImpl) _then)
+class __$$GetMediumDataCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$GetMediumData>
+    implements _$$GetMediumDataCopyWith<$Res> {
+  __$$GetMediumDataCopyWithImpl(
+      _$GetMediumData _value, $Res Function(_$GetMediumData) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = freezed,
+    Object? allMediumData = null,
   }) {
-    return _then(_$SectionIndexEventImpl(
-      freezed == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int?,
+    return _then(_$GetMediumData(
+      null == allMediumData
+          ? _value._allMediumData
+          : allMediumData // ignore: cast_nullable_to_non_nullable
+              as List<MediumEntity>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$SectionIndexEventImpl
-    with DiagnosticableTreeMixin
-    implements SectionIndexEvent {
-  const _$SectionIndexEventImpl(this.index);
+class _$GetMediumData with DiagnosticableTreeMixin implements GetMediumData {
+  const _$GetMediumData(final List<MediumEntity> allMediumData)
+      : _allMediumData = allMediumData;
 
+  final List<MediumEntity> _allMediumData;
   @override
-  final int? index;
+  List<MediumEntity> get allMediumData {
+    if (_allMediumData is EqualUnmodifiableListView) return _allMediumData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allMediumData);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeEvent.changeSection(index: $index)';
+    return 'HomeEvent.getMediumData(allMediumData: $allMediumData)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'HomeEvent.changeSection'))
-      ..add(DiagnosticsProperty('index', index));
+      ..add(DiagnosticsProperty('type', 'HomeEvent.getMediumData'))
+      ..add(DiagnosticsProperty('allMediumData', allMediumData));
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SectionIndexEventImpl &&
-            (identical(other.index, index) || other.index == index));
+            other is _$GetMediumData &&
+            const DeepCollectionEquality()
+                .equals(other._allMediumData, _allMediumData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_allMediumData));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SectionIndexEventImplCopyWith<_$SectionIndexEventImpl> get copyWith =>
-      __$$SectionIndexEventImplCopyWithImpl<_$SectionIndexEventImpl>(
-          this, _$identity);
+  _$$GetMediumDataCopyWith<_$GetMediumData> get copyWith =>
+      __$$GetMediumDataCopyWithImpl<_$GetMediumData>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initTheme,
-    required TResult Function(int? index) changeSection,
+    required TResult Function(List<MediumEntity> allMediumData) getMediumData,
   }) {
-    return changeSection(index);
+    return getMediumData(allMediumData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initTheme,
-    TResult? Function(int? index)? changeSection,
+    TResult? Function(List<MediumEntity> allMediumData)? getMediumData,
   }) {
-    return changeSection?.call(index);
+    return getMediumData?.call(allMediumData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initTheme,
-    TResult Function(int? index)? changeSection,
+    TResult Function(List<MediumEntity> allMediumData)? getMediumData,
     required TResult orElse(),
   }) {
-    if (changeSection != null) {
-      return changeSection(index);
+    if (getMediumData != null) {
+      return getMediumData(allMediumData);
     }
     return orElse();
   }
@@ -289,51 +197,89 @@ class _$SectionIndexEventImpl
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitThemeEvent value) initTheme,
-    required TResult Function(SectionIndexEvent value) changeSection,
+    required TResult Function(GetMediumData value) getMediumData,
   }) {
-    return changeSection(this);
+    return getMediumData(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitThemeEvent value)? initTheme,
-    TResult? Function(SectionIndexEvent value)? changeSection,
+    TResult? Function(GetMediumData value)? getMediumData,
   }) {
-    return changeSection?.call(this);
+    return getMediumData?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitThemeEvent value)? initTheme,
-    TResult Function(SectionIndexEvent value)? changeSection,
+    TResult Function(GetMediumData value)? getMediumData,
     required TResult orElse(),
   }) {
-    if (changeSection != null) {
-      return changeSection(this);
+    if (getMediumData != null) {
+      return getMediumData(this);
     }
     return orElse();
   }
 }
 
-abstract class SectionIndexEvent implements HomeEvent {
-  const factory SectionIndexEvent(final int? index) = _$SectionIndexEventImpl;
+abstract class GetMediumData implements HomeEvent {
+  const factory GetMediumData(final List<MediumEntity> allMediumData) =
+      _$GetMediumData;
 
-  int? get index;
+  @override
+  List<MediumEntity> get allMediumData;
+  @override
   @JsonKey(ignore: true)
-  _$$SectionIndexEventImplCopyWith<_$SectionIndexEventImpl> get copyWith =>
+  _$$GetMediumDataCopyWith<_$GetMediumData> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$HomeState {
-  ThemeData? get theme => throw _privateConstructorUsedError;
-  int? get sectionsSelectedIndex => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<MediumEntity> allMediumData) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<MediumEntity> allMediumData)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<MediumEntity> allMediumData)? success,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -341,8 +287,6 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
-  @useResult
-  $Res call({ThemeData? theme, int? sectionsSelectedIndex});
 }
 
 /// @nodoc
@@ -354,120 +298,384 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
 
-  @pragma('vm:prefer-inline')
+/// @nodoc
+abstract class _$$_InitialCopyWith<$Res> {
+  factory _$$_InitialCopyWith(
+          _$_Initial value, $Res Function(_$_Initial) then) =
+      __$$_InitialCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Initial>
+    implements _$$_InitialCopyWith<$Res> {
+  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Initial with DiagnosticableTreeMixin implements _Initial {
+  const _$_Initial();
+
   @override
-  $Res call({
-    Object? theme = freezed,
-    Object? sectionsSelectedIndex = freezed,
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeState.initial'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Initial);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<MediumEntity> allMediumData) success,
   }) {
-    return _then(_value.copyWith(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeData?,
-      sectionsSelectedIndex: freezed == sectionsSelectedIndex
-          ? _value.sectionsSelectedIndex
-          : sectionsSelectedIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<MediumEntity> allMediumData)? success,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<MediumEntity> allMediumData)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
   }
 }
 
-/// @nodoc
-abstract class _$$HomeStateImplCopyWith<$Res>
-    implements $HomeStateCopyWith<$Res> {
-  factory _$$HomeStateImplCopyWith(
-          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
-      __$$HomeStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ThemeData? theme, int? sectionsSelectedIndex});
+abstract class _Initial implements HomeState {
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-class __$$HomeStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
-    implements _$$HomeStateImplCopyWith<$Res> {
-  __$$HomeStateImplCopyWithImpl(
-      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+abstract class _$$_LoadingCopyWith<$Res> {
+  factory _$$_LoadingCopyWith(
+          _$_Loading value, $Res Function(_$_Loading) then) =
+      __$$_LoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Loading>
+    implements _$$_LoadingCopyWith<$Res> {
+  __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_Loading with DiagnosticableTreeMixin implements _Loading {
+  const _$_Loading();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'HomeState.loading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'HomeState.loading'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_Loading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<MediumEntity> allMediumData) success,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<MediumEntity> allMediumData)? success,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<MediumEntity> allMediumData)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Loading implements HomeState {
+  const factory _Loading() = _$_Loading;
+}
+
+/// @nodoc
+abstract class _$$_SuccessCopyWith<$Res> {
+  factory _$$_SuccessCopyWith(
+          _$_Success value, $Res Function(_$_Success) then) =
+      __$$_SuccessCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<MediumEntity> allMediumData});
+}
+
+/// @nodoc
+class __$$_SuccessCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$_Success>
+    implements _$$_SuccessCopyWith<$Res> {
+  __$$_SuccessCopyWithImpl(_$_Success _value, $Res Function(_$_Success) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? theme = freezed,
-    Object? sectionsSelectedIndex = freezed,
+    Object? allMediumData = null,
   }) {
-    return _then(_$HomeStateImpl(
-      theme: freezed == theme
-          ? _value.theme
-          : theme // ignore: cast_nullable_to_non_nullable
-              as ThemeData?,
-      sectionsSelectedIndex: freezed == sectionsSelectedIndex
-          ? _value.sectionsSelectedIndex
-          : sectionsSelectedIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
+    return _then(_$_Success(
+      null == allMediumData
+          ? _value._allMediumData
+          : allMediumData // ignore: cast_nullable_to_non_nullable
+              as List<MediumEntity>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$HomeStateImpl with DiagnosticableTreeMixin implements _HomeState {
-  const _$HomeStateImpl({this.theme, this.sectionsSelectedIndex});
+class _$_Success with DiagnosticableTreeMixin implements _Success {
+  const _$_Success(final List<MediumEntity> allMediumData)
+      : _allMediumData = allMediumData;
 
+  final List<MediumEntity> _allMediumData;
   @override
-  final ThemeData? theme;
-  @override
-  final int? sectionsSelectedIndex;
+  List<MediumEntity> get allMediumData {
+    if (_allMediumData is EqualUnmodifiableListView) return _allMediumData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_allMediumData);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'HomeState(theme: $theme, sectionsSelectedIndex: $sectionsSelectedIndex)';
+    return 'HomeState.success(allMediumData: $allMediumData)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'HomeState'))
-      ..add(DiagnosticsProperty('theme', theme))
-      ..add(
-          DiagnosticsProperty('sectionsSelectedIndex', sectionsSelectedIndex));
+      ..add(DiagnosticsProperty('type', 'HomeState.success'))
+      ..add(DiagnosticsProperty('allMediumData', allMediumData));
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeStateImpl &&
-            (identical(other.theme, theme) || other.theme == theme) &&
-            (identical(other.sectionsSelectedIndex, sectionsSelectedIndex) ||
-                other.sectionsSelectedIndex == sectionsSelectedIndex));
+            other is _$_Success &&
+            const DeepCollectionEquality()
+                .equals(other._allMediumData, _allMediumData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theme, sectionsSelectedIndex);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_allMediumData));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
-      __$$HomeStateImplCopyWithImpl<_$HomeStateImpl>(this, _$identity);
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
+      __$$_SuccessCopyWithImpl<_$_Success>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<MediumEntity> allMediumData) success,
+  }) {
+    return success(allMediumData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<MediumEntity> allMediumData)? success,
+  }) {
+    return success?.call(allMediumData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<MediumEntity> allMediumData)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(allMediumData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+  }) {
+    return success(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+  }) {
+    return success?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    required TResult orElse(),
+  }) {
+    if (success != null) {
+      return success(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _HomeState implements HomeState {
-  const factory _HomeState(
-      {final ThemeData? theme,
-      final int? sectionsSelectedIndex}) = _$HomeStateImpl;
+abstract class _Success implements HomeState {
+  const factory _Success(final List<MediumEntity> allMediumData) = _$_Success;
 
-  @override
-  ThemeData? get theme;
-  @override
-  int? get sectionsSelectedIndex;
-  @override
+  List<MediumEntity> get allMediumData;
   @JsonKey(ignore: true)
-  _$$HomeStateImplCopyWith<_$HomeStateImpl> get copyWith =>
+  _$$_SuccessCopyWith<_$_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }

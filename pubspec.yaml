@@ -57,7 +57,7 @@ dependencies:
   inview_notifier_list: ^3.0.0
   hovering: ^1.0.4
   flutter_hooks: ^0.20.3
-
+  dio: ^5.0.2
 
 dev_dependencies:
   flutter_test:

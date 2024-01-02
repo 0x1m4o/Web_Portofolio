@@ -1,5 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:auto_animated/auto_animated.dart';
+import 'dart:html' as html; // Import the dart:html library
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
@@ -8,6 +9,10 @@ import 'package:inview_notifier_list/inview_notifier_list.dart';
 import 'package:lottie/lottie.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:web_portofolio/core/usecases/usecase.dart';
+import 'package:web_portofolio/feature/home/domain/entities/medium_entity.dart';
+import 'package:web_portofolio/feature/home/domain/usecases/get_medium_usecase.dart';
+import 'package:web_portofolio/feature/home/presentation/widgets/loading.dart';
 import 'package:web_portofolio/injector.dart';
 import 'package:web_portofolio/feature/home/presentation/bloc/home/home_bloc.dart';
 import 'package:web_portofolio/feature/home/presentation/resources/colors.dart';
@@ -47,31 +52,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   int isBlogHoverItem = 0;
 
+  List<String> firstSortedList = [];
+  List<String> secondSortedList = [];
+
   int isProjectHoverItem = 0;
 
+  List<MediumEntity>? blogsData;
   List<Map<String, dynamic>> whatCanIDo = [
     {'title': 'Mobile App Development', 'logo': AppSvg.mobile},
     {'title': 'Website Development', 'logo': AppSvg.web},
   ];
 
-  List blogsData = [
-    {
-      'image':
-          'https://miro.medium.com/v2/resize:fill:140:140/1*OVio2KkFrS_ziifUM2iAnw.png',
-      'description':
-          'Hai, My name is Muhamad Duta Chandra. I am Mobile Developer from Indonesia. In this article i wan’t to share about my understanding of Flutter Version Management (FVM). I hope you like it. Introduction Flutter Version Management(FVM) is a Command Line Interface (CLI) tools to manage flutter SDK versions. The FVM…'
-    },
-    {
-      'image':
-          'https://miro.medium.com/v2/resize:fill:140:140/1*OVio2KkFrS_ziifUM2iAnw.png',
-      'description':
-          'Hai, My name is Muhamad Duta Chandra. I am Mobile Developer from Indonesia. In this article i wan’t to share about my understanding of Flutter Version Management (FVM). I hope you like it. Introduction Flutter Version Management(FVM) is a Command Line Interface (CLI) tools to manage flutter SDK versions. The FVM…'
-    },
-  ];
-
   @override
   void initState() {
     super.initState();
+    sl<GetMediumUseCase>().call(NoParams()).then((value) {
+      value.fold((l) => null, (r) {
+        print('get the data $r');
+        homeBloc.add(GetMediumData(r));
+      });
+    });
 
     _iconController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
@@ -159,79 +159,109 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           spreadRadius: 0.05,
         ),
         slider: Container(
-          height: 400,
-          width: Responsive().isMobile(context) ? 150 : 265,
-          alignment: Alignment.center,
-          child: BlocBuilder<HomeBloc, HomeState>(
-            bloc: homeBloc,
-            builder: (context, state) {
-              return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    ...List.generate(
-                        sections.length - 2,
-                        (index) => InkWell(
-                              onTap: () {
-                                scrollController.scrollToIndex(index + 1,
-                                    preferPosition: AutoScrollPosition.begin,
-                                    duration:
-                                        const Duration(milliseconds: 500));
+            height: 400,
+            width: Responsive().isMobile(context) ? 150 : 265,
+            alignment: Alignment.center,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 10),
+                  ...List.generate(
+                      sections.length - 2,
+                      (index) => InkWell(
+                            onTap: () {
+                              scrollController.scrollToIndex(index + 1,
+                                  preferPosition: AutoScrollPosition.begin,
+                                  duration: const Duration(milliseconds: 500));
 
-                                _sliderDrawerKey.currentState?.closeSlider();
-                              },
-                              child: Container(
-                                height: 30,
-                                margin: const EdgeInsets.only(left: 15),
-                                alignment: Alignment.centerLeft,
-                                child: GFontText(
-                                    color: ColorPallete.black252525,
-                                    content: sections[index + 1]['title']),
-                              ),
-                            )),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      width: 120,
-                      margin: const EdgeInsets.only(left: 12, top: 5),
-                      child: SizedBox(
-                        width: 70,
-                        child: AnimatedToggleSwitch<int>.rolling(
-                          height: 25,
-                          current: currentIndex,
-                          values: const [0, 1],
-                          onChanged: (i) {
-                            setState(() => currentIndex = i);
-                          },
-                          styleBuilder: (i) => ToggleStyle(
-                              indicatorColor: i.isEven == true
-                                  ? Colors.orange.withOpacity(.3)
-                                  : Colors.blue.withOpacity(.3)),
-                          iconBuilder: rollingIconBuilder,
-                        ),
+                              _sliderDrawerKey.currentState?.closeSlider();
+                            },
+                            child: Container(
+                              height: 30,
+                              margin: const EdgeInsets.only(left: 15),
+                              alignment: Alignment.centerLeft,
+                              child: GFontText(
+                                  color: ColorPallete.black252525,
+                                  content: sections[index + 1]['title']),
+                            ),
+                          )),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: 120,
+                    margin: const EdgeInsets.only(left: 12, top: 5),
+                    child: SizedBox(
+                      width: 70,
+                      child: AnimatedToggleSwitch<int>.rolling(
+                        height: 25,
+                        current: currentIndex,
+                        values: const [0, 1],
+                        onChanged: (i) {
+                          setState(() => currentIndex = i);
+                        },
+                        styleBuilder: (i) => ToggleStyle(
+                            indicatorColor: i.isEven == true
+                                ? Colors.orange.withOpacity(.3)
+                                : Colors.blue.withOpacity(.3)),
+                        iconBuilder: rollingIconBuilder,
                       ),
                     ),
-                  ]);
-            },
-          ),
-        ),
-        child: MaxWidthBox(
-          maxWidth: 1100,
-          child: GestureDetector(
-            onTap: () {
-              isSliderOpen
-                  ? _sliderDrawerKey.currentState?.closeSlider()
-                  : null;
-            },
-            child: StickyContainer(
-              displayOverFlowContent: true,
-              stickyChildren: [stickyWidget(sections)],
-              child: AnimateIfVisibleWrapper(
-                showItemInterval: const Duration(milliseconds: 150),
-                child: contentList(sections),
-              ),
-            ),
-          ),
+                  ),
+                ])),
+        child: BlocConsumer<HomeBloc, HomeState>(
+          bloc: homeBloc,
+          listener: (context, state) {
+            state.whenOrNull(
+              success: (allMediumData) {
+                setState(() {
+                  blogsData = allMediumData;
+
+                  List<String>? firstCategory = blogsData?[0].category;
+                  List<String>? secondCategory = blogsData?[1].category;
+
+                  if (firstCategory != null) {
+                    firstSortedList = List.from(firstCategory);
+                    firstSortedList
+                        .sort((a, b) => b.length.compareTo(a.length));
+                  }
+                  if (secondCategory != null) {
+                    secondSortedList = List.from(secondCategory);
+                    secondSortedList
+                        .sort((a, b) => b.length.compareTo(a.length));
+                  }
+
+                  print(firstSortedList);
+                  print('secondSortedList $secondSortedList');
+                });
+              },
+            );
+          },
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () => loadingWidget(),
+              loading: () => loadingWidget(),
+              success: (allMediumData) {
+                return MaxWidthBox(
+                  maxWidth: 1100,
+                  child: GestureDetector(
+                    onTap: () {
+                      isSliderOpen
+                          ? _sliderDrawerKey.currentState?.closeSlider()
+                          : null;
+                    },
+                    child: StickyContainer(
+                      displayOverFlowContent: true,
+                      stickyChildren: [stickyWidget(sections)],
+                      child: AnimateIfVisibleWrapper(
+                        showItemInterval: const Duration(milliseconds: 150),
+                        child: contentList(sections),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          },
         ),
       ),
     );
@@ -387,173 +417,202 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       rowSpacing: 42,
                       children: [
                         ...List.generate(
-                          blogsData.length,
+                          2,
                           (index) => ResponsiveRowColumnItem(
                             rowFit: FlexFit.tight,
-                            child: MouseRegion(
-                                onHover: (event) {
-                                  setState(() {
-                                    isBlogHoverItem = index + 1;
-                                  });
-                                },
-                                onExit: (event) {
-                                  setState(() {
-                                    isBlogHoverItem = 0;
-                                  });
-                                },
-                                child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    decoration: BoxDecoration(
-                                        boxShadow: isBlogHoverItem == index + 1
-                                            ? [
-                                                const BoxShadow(
-                                                  color: Color(0x3F000000),
-                                                  blurRadius: 4,
-                                                  offset: Offset(2, 4),
-                                                  spreadRadius: 2,
-                                                )
-                                              ]
-                                            : null,
-                                        color: const Color(0xFFF4F5F4),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    padding: const EdgeInsets.all(10),
-                                    child: Column(
-                                      children: [
-                                        ClipRRect(
+                            child: GestureDetector(
+                              onTap: () {
+                                html.window.location.href =
+                                    blogsData?[index].link ?? '';
+                              },
+                              child: MouseRegion(
+                                  onHover: (event) {
+                                    setState(() {
+                                      isBlogHoverItem = index + 1;
+                                    });
+                                  },
+                                  onExit: (event) {
+                                    setState(() {
+                                      isBlogHoverItem = 0;
+                                    });
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      decoration: BoxDecoration(
+                                          boxShadow: isBlogHoverItem ==
+                                                  index + 1
+                                              ? [
+                                                  const BoxShadow(
+                                                    color: Color(0x3F000000),
+                                                    blurRadius: 4,
+                                                    offset: Offset(2, 4),
+                                                    spreadRadius: 2,
+                                                  )
+                                                ]
+                                              : null,
+                                          color: const Color(0xFFF4F5F4),
                                           borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(10),
-                                            child: ResponsiveRowColumn(
-                                              layout: ResponsiveBreakpoints.of(
-                                                          context)
-                                                      .smallerThan(DESKTOP)
-                                                  ? ResponsiveRowColumnType
-                                                      .COLUMN
-                                                  : ResponsiveRowColumnType.ROW,
-                                              rowMainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              columnCrossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              columnMainAxisSize:
-                                                  MainAxisSize.max,
-                                              rowMainAxisSize: MainAxisSize.max,
-                                              rowPadding: EdgeInsets.zero,
-                                              columnMainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              columnSpacing: 10,
-                                              rowSpacing: 10,
-                                              children: [
-                                                ResponsiveRowColumnItem(
-                                                  rowFlex: 1,
-                                                  rowFit: FlexFit.tight,
-                                                  child: Container(
-                                                    alignment: Alignment.center,
-                                                    decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                          image: NetworkImage(
-                                                              blogsData[index]
-                                                                  ['image']),
-                                                          fit: BoxFit.cover,
-                                                        ),
-                                                        color: Colors
-                                                            .grey.shade200,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10)),
-                                                    width: ResponsiveBreakpoints
-                                                                .of(context)
-                                                            .smallerOrEqualTo(
-                                                                TABLET)
-                                                        ? double.infinity
-                                                        : 130,
-                                                    height: ResponsiveBreakpoints
-                                                                .of(context)
-                                                            .smallerOrEqualTo(
-                                                                TABLET)
-                                                        ? 200
-                                                        : 130,
+                                              BorderRadius.circular(10)),
+                                      padding: const EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: ResponsiveRowColumn(
+                                                layout: ResponsiveBreakpoints
+                                                            .of(context)
+                                                        .smallerThan(DESKTOP)
+                                                    ? ResponsiveRowColumnType
+                                                        .COLUMN
+                                                    : ResponsiveRowColumnType
+                                                        .ROW,
+                                                rowMainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                columnCrossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                columnMainAxisSize:
+                                                    MainAxisSize.max,
+                                                rowMainAxisSize:
+                                                    MainAxisSize.max,
+                                                rowPadding: EdgeInsets.zero,
+                                                columnMainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                columnSpacing: 10,
+                                                rowSpacing: 10,
+                                                children: [
+                                                  ResponsiveRowColumnItem(
+                                                    rowFlex: 1,
+                                                    rowFit: FlexFit.tight,
+                                                    child: Container(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      decoration: BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            image: NetworkImage(
+                                                                RegExp(
+                                                                      r'https?://[^"]+',
+                                                                    )
+                                                                        .firstMatch(
+                                                                            blogsData?[index].content ??
+                                                                                '')
+                                                                        ?.group(
+                                                                            0) ??
+                                                                    ''),
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                          color: Colors
+                                                              .grey.shade200,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      width: ResponsiveBreakpoints
+                                                                  .of(context)
+                                                              .smallerOrEqualTo(
+                                                                  TABLET)
+                                                          ? double.infinity
+                                                          : 130,
+                                                      height: ResponsiveBreakpoints
+                                                                  .of(context)
+                                                              .smallerOrEqualTo(
+                                                                  TABLET)
+                                                          ? 200
+                                                          : 130,
+                                                    ),
                                                   ),
-                                                ),
-                                                ResponsiveRowColumnItem(
-                                                  rowFlex: 2,
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Container(
+                                                  ResponsiveRowColumnItem(
+                                                    rowFlex: 2,
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Container(
+                                                            alignment: Alignment
+                                                                .center,
+                                                            child: Text(
+                                                              blogsData?[index]
+                                                                      .title ??
+                                                                  '',
+                                                              maxLines: 4,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                            )),
+                                                        Wrap(
                                                           alignment:
-                                                              Alignment.center,
-                                                          child: Text(
-                                                            blogsData[index]
-                                                                ['description'],
-                                                            maxLines: 4,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                          )),
-                                                      Wrap(
-                                                        alignment:
-                                                            WrapAlignment.start,
-                                                        crossAxisAlignment:
-                                                            WrapCrossAlignment
-                                                                .start,
-                                                        runAlignment:
-                                                            WrapAlignment.start,
-                                                        spacing: 10,
-                                                        children: [
-                                                          ...List.generate(
-                                                              4,
-                                                              (index) =>
-                                                                  Container(
-                                                                    decoration: BoxDecoration(
-                                                                        color: ColorPallete
-                                                                            .whiteEAEBEA,
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(15)),
-                                                                    margin: const EdgeInsets
-                                                                        .only(
-                                                                        top: 10,
-                                                                        right:
-                                                                            10),
-                                                                    child:
-                                                                        const Padding(
-                                                                      padding: EdgeInsets.symmetric(
-                                                                          horizontal:
-                                                                              15,
-                                                                          vertical:
-                                                                              5),
+                                                              WrapAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              WrapCrossAlignment
+                                                                  .start,
+                                                          runAlignment:
+                                                              WrapAlignment
+                                                                  .start,
+                                                          spacing: 10,
+                                                          children: [
+                                                            ...List.generate(
+                                                                (blogsData?[index].category?.length ??
+                                                                            0) >
+                                                                        3
+                                                                    ? 3
+                                                                    : 0,
+                                                                (indexItem) =>
+                                                                    Container(
+                                                                      decoration: BoxDecoration(
+                                                                          color: ColorPallete
+                                                                              .whiteEAEBEA,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(15)),
+                                                                      margin: const EdgeInsets
+                                                                              .only(
+                                                                          top:
+                                                                              10,
+                                                                          right:
+                                                                              10),
                                                                       child:
-                                                                          SizedBox(
-                                                                        height:
-                                                                            20,
+                                                                          Padding(
+                                                                        padding: const EdgeInsets.symmetric(
+                                                                            horizontal:
+                                                                                15,
+                                                                            vertical:
+                                                                                5),
                                                                         child:
-                                                                            Text(
-                                                                          'test',
-                                                                          style:
-                                                                              TextStyle(color: ColorPallete.black252525),
-                                                                          textAlign:
-                                                                              TextAlign.center,
+                                                                            SizedBox(
+                                                                          height:
+                                                                              20,
+                                                                          child:
+                                                                              Text(
+                                                                            (index == 0
+                                                                                ? firstSortedList
+                                                                                : secondSortedList)[indexItem],
+                                                                            style:
+                                                                                const TextStyle(color: ColorPallete.black252525),
+                                                                            textAlign:
+                                                                                TextAlign.center,
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ))
-                                                        ],
-                                                      )
-                                                    ],
+                                                                    ))
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ))),
+                                        ],
+                                      ))),
+                            ),
                           ),
                         )
                       ],

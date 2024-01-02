@@ -12,8 +12,8 @@ class MediumModel with _$MediumModel {
     @JsonKey(name: 'author') required String author,
     @JsonKey(name: 'published') required int published,
     @JsonKey(name: 'created') required int created,
-    @JsonKey(name: 'category') required List<String> category,
     @JsonKey(name: 'content') required String content,
+    @JsonKey(name: 'category') required List<String> category,
   }) = _MediumModel;
 
   factory MediumModel.fromJson(Map<String, dynamic> json) =>

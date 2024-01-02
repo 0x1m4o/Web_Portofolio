@@ -30,10 +30,10 @@ mixin _$MediumModel {
   int get published => throw _privateConstructorUsedError;
   @JsonKey(name: 'created')
   int get created => throw _privateConstructorUsedError;
-  @JsonKey(name: 'category')
-  List<String> get category => throw _privateConstructorUsedError;
   @JsonKey(name: 'content')
   String get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'category')
+  List<String> get category => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,8 +53,8 @@ abstract class $MediumModelCopyWith<$Res> {
       @JsonKey(name: 'author') String author,
       @JsonKey(name: 'published') int published,
       @JsonKey(name: 'created') int created,
-      @JsonKey(name: 'category') List<String> category,
-      @JsonKey(name: 'content') String content});
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'category') List<String> category});
 }
 
 /// @nodoc
@@ -75,8 +75,8 @@ class _$MediumModelCopyWithImpl<$Res, $Val extends MediumModel>
     Object? author = null,
     Object? published = null,
     Object? created = null,
-    Object? category = null,
     Object? content = null,
+    Object? category = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -99,24 +99,24 @@ class _$MediumModelCopyWithImpl<$Res, $Val extends MediumModel>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
-          ? _value.category
-          : category // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$MediumModelImplCopyWith<$Res>
+abstract class _$$_MediumModelCopyWith<$Res>
     implements $MediumModelCopyWith<$Res> {
-  factory _$$MediumModelImplCopyWith(
-          _$MediumModelImpl value, $Res Function(_$MediumModelImpl) then) =
-      __$$MediumModelImplCopyWithImpl<$Res>;
+  factory _$$_MediumModelCopyWith(
+          _$_MediumModel value, $Res Function(_$_MediumModel) then) =
+      __$$_MediumModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -125,16 +125,16 @@ abstract class _$$MediumModelImplCopyWith<$Res>
       @JsonKey(name: 'author') String author,
       @JsonKey(name: 'published') int published,
       @JsonKey(name: 'created') int created,
-      @JsonKey(name: 'category') List<String> category,
-      @JsonKey(name: 'content') String content});
+      @JsonKey(name: 'content') String content,
+      @JsonKey(name: 'category') List<String> category});
 }
 
 /// @nodoc
-class __$$MediumModelImplCopyWithImpl<$Res>
-    extends _$MediumModelCopyWithImpl<$Res, _$MediumModelImpl>
-    implements _$$MediumModelImplCopyWith<$Res> {
-  __$$MediumModelImplCopyWithImpl(
-      _$MediumModelImpl _value, $Res Function(_$MediumModelImpl) _then)
+class __$$_MediumModelCopyWithImpl<$Res>
+    extends _$MediumModelCopyWithImpl<$Res, _$_MediumModel>
+    implements _$$_MediumModelCopyWith<$Res> {
+  __$$_MediumModelCopyWithImpl(
+      _$_MediumModel _value, $Res Function(_$_MediumModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,10 +145,10 @@ class __$$MediumModelImplCopyWithImpl<$Res>
     Object? author = null,
     Object? published = null,
     Object? created = null,
-    Object? category = null,
     Object? content = null,
+    Object? category = null,
   }) {
-    return _then(_$MediumModelImpl(
+    return _then(_$_MediumModel(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -169,33 +169,33 @@ class __$$MediumModelImplCopyWithImpl<$Res>
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
-          ? _value._category
-          : category // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      category: null == category
+          ? _value._category
+          : category // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$MediumModelImpl implements _MediumModel {
-  const _$MediumModelImpl(
+class _$_MediumModel implements _MediumModel {
+  const _$_MediumModel(
       {@JsonKey(name: 'title') required this.title,
       @JsonKey(name: 'link') required this.link,
       @JsonKey(name: 'author') required this.author,
       @JsonKey(name: 'published') required this.published,
       @JsonKey(name: 'created') required this.created,
-      @JsonKey(name: 'category') required final List<String> category,
-      @JsonKey(name: 'content') required this.content})
+      @JsonKey(name: 'content') required this.content,
+      @JsonKey(name: 'category') required final List<String> category})
       : _category = category;
 
-  factory _$MediumModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MediumModelImplFromJson(json);
+  factory _$_MediumModel.fromJson(Map<String, dynamic> json) =>
+      _$$_MediumModelFromJson(json);
 
   @override
   @JsonKey(name: 'title')
@@ -212,6 +212,9 @@ class _$MediumModelImpl implements _MediumModel {
   @override
   @JsonKey(name: 'created')
   final int created;
+  @override
+  @JsonKey(name: 'content')
+  final String content;
   final List<String> _category;
   @override
   @JsonKey(name: 'category')
@@ -222,43 +225,39 @@ class _$MediumModelImpl implements _MediumModel {
   }
 
   @override
-  @JsonKey(name: 'content')
-  final String content;
-
-  @override
   String toString() {
-    return 'MediumModel(title: $title, link: $link, author: $author, published: $published, created: $created, category: $category, content: $content)';
+    return 'MediumModel(title: $title, link: $link, author: $author, published: $published, created: $created, content: $content, category: $category)';
   }
 
   @override
-  bool operator ==(Object other) {
+  bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MediumModelImpl &&
+            other is _$_MediumModel &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.link, link) || other.link == link) &&
             (identical(other.author, author) || other.author == author) &&
             (identical(other.published, published) ||
                 other.published == published) &&
             (identical(other.created, created) || other.created == created) &&
-            const DeepCollectionEquality().equals(other._category, _category) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            const DeepCollectionEquality().equals(other._category, _category));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, title, link, author, published,
-      created, const DeepCollectionEquality().hash(_category), content);
+      created, content, const DeepCollectionEquality().hash(_category));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$MediumModelImplCopyWith<_$MediumModelImpl> get copyWith =>
-      __$$MediumModelImplCopyWithImpl<_$MediumModelImpl>(this, _$identity);
+  _$$_MediumModelCopyWith<_$_MediumModel> get copyWith =>
+      __$$_MediumModelCopyWithImpl<_$_MediumModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$MediumModelImplToJson(
+    return _$$_MediumModelToJson(
       this,
     );
   }
@@ -271,12 +270,12 @@ abstract class _MediumModel implements MediumModel {
           @JsonKey(name: 'author') required final String author,
           @JsonKey(name: 'published') required final int published,
           @JsonKey(name: 'created') required final int created,
-          @JsonKey(name: 'category') required final List<String> category,
-          @JsonKey(name: 'content') required final String content}) =
-      _$MediumModelImpl;
+          @JsonKey(name: 'content') required final String content,
+          @JsonKey(name: 'category') required final List<String> category}) =
+      _$_MediumModel;
 
   factory _MediumModel.fromJson(Map<String, dynamic> json) =
-      _$MediumModelImpl.fromJson;
+      _$_MediumModel.fromJson;
 
   @override
   @JsonKey(name: 'title')
@@ -294,13 +293,13 @@ abstract class _MediumModel implements MediumModel {
   @JsonKey(name: 'created')
   int get created;
   @override
-  @JsonKey(name: 'category')
-  List<String> get category;
-  @override
   @JsonKey(name: 'content')
   String get content;
   @override
+  @JsonKey(name: 'category')
+  List<String> get category;
+  @override
   @JsonKey(ignore: true)
-  _$$MediumModelImplCopyWith<_$MediumModelImpl> get copyWith =>
+  _$$_MediumModelCopyWith<_$_MediumModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

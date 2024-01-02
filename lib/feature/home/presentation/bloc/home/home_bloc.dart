@@ -4,25 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:web_portofolio/feature/home/domain/entities/medium_entity.dart';
 
 part 'home_bloc.freezed.dart';
 part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  List<int>? biner;
-
-  int currentIndex = 0;
-
-  HomeBloc() : super(HomeState.initial()) {
-    on<InitThemeEvent>(_onInitTheme);
-    on<SectionIndexEvent>(_onChangeSectionEvent);
+  HomeBloc() : super(const HomeState.initial()) {
+    on<GetMediumData>(_onGetMediumData);
   }
 
-  void _onInitTheme(InitThemeEvent event, Emitter<HomeState> state) {}
-  void _onChangeSectionEvent(
-      SectionIndexEvent event, Emitter<HomeState> state) {
-    emit(HomeState.changeSection());
-    emit(HomeState(sectionsSelectedIndex: event.index));
+  void _onGetMediumData(GetMediumData event, Emitter<HomeState> state) {
+    emit(const HomeState.loading());
+    emit(HomeState.success(event.allMediumData));
   }
 }
