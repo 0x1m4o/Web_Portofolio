@@ -122,28 +122,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     sliderInit();
-    List sections = [
+    final List sections = [
       {
-        'sections': overview(),
         'key': const ValueKey('overview'),
-        'title': 'Overview'
-      },
-      {'sections': about(), 'key': const ValueKey('about'), 'title': 'About'},
-      {'sections': blogs(), 'key': const ValueKey('blogs'), 'title': 'Blogs'},
-      {
-        'sections': projects(),
-        'key': const ValueKey('projects'),
-        'title': 'Projects'
+        'sections': overview(),
+        'title': 'Overview',
       },
       {
-        'sections': contact(),
-        'key': const ValueKey('contact'),
-        'title': 'Contact'
+        'key': const ValueKey('about'),
+        'title': 'About',
+        'sections': about(),
       },
       {
-        'sections': footer(),
+        'key': const ValueKey('blogs'),
+        'title': 'Blogs',
+        'sections': blogs(),
+      },
+      // {
+      //   'key': const ValueKey('projects'),
+      //   'title': 'Projects',
+      //   'sections': projects(),
+      // },
+      // {
+      //   'key': const ValueKey('contact'),
+      //   'title': 'Contact',
+      //   'sections': contact(),
+      // },
+      {
         'key': const ValueKey('footer'),
-        'title': 'Footer'
+        'sections': footer(),
+        'title': 'Footer',
       },
     ];
 
